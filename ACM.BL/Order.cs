@@ -1,37 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CMS.BusinessLayer;
 
 namespace ACM.BL
 {
     public class Order
     {
-        public Order()
-        {
+        public Order() { }
 
-        }
         public Order(int orderId)
         {
-            this.OrderId = orderId;
+            OrderId = orderId;
         }
-        public Customer Customer { get; set; }
+
+        public int OrderId { get; internal set; }
+        
+        // Связь представлена идентификатором, а не объектом
+        public int CustomerId { get; set; } 
+        
         public DateTimeOffset? OrderDate { get; set; }
         public Address ShippingAddress { get; set; }
-        public int OrderId { get; private set; }
 
-        /// <summary>
-        /// Validates the order data.
-        /// </summary>
-        /// <returns></returns>
         public bool Validate()
         {
             var isValid = true;
-
             if (OrderDate == null) isValid = false;
-
+            if (CustomerId <= 0) isValid = false;
             return isValid;
         }
     }

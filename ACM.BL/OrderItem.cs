@@ -1,39 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CMS.BusinessLayer
+namespace ACM.BL
 {
     public class OrderItem
     {
-        public OrderItem()
-        {
-
-        }
+        public OrderItem() { }
 
         public OrderItem(int orderItemId)
         {
-            this.OrderItemId = orderItemId;
+            OrderItemId = orderItemId;
         }
-        public int OrderItemId { get; private set; }
-        public int OrderQuantity { get; set; }
+
+        public int OrderItemId { get; internal set; }
+        
+        // Связи представлены идентификаторами
+        public int OrderId { get; set; }
         public int ProductId { get; set; }
+        
+        public int OrderQuantity { get; set; }
         public decimal? PurchasePrice { get; set; }
 
-        /// <summary>
-        /// Validates the order item data.
-        /// </summary>
-        /// <returns></returns>
         public bool Validate()
         {
             var isValid = true;
-
-            if (OrderQuantity <= 0) isValid = false;
+            if (OrderId <= 0) isValid = false;
             if (ProductId <= 0) isValid = false;
-            if (PurchasePrice == null) isValid = false;
-
+            if (OrderQuantity <= 0) isValid = false;
+            if (PurchasePrice == null || PurchasePrice <= 0) isValid = false;
             return isValid;
         }
     }

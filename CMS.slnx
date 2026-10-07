@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ACM.BL/ACM.BL.csproj" />
+  <Project Path="ACM.DAL/ACM.DAL.csproj" />
+</Solution>

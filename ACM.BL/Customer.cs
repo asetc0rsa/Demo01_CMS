@@ -1,42 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CMS.BusinessLayer
+namespace ACM.BL
 {
     public class Customer
     {
-        public Customer()
-        {
+        public Customer() { }
 
-        }
         public Customer(int customerId)
         {
-            this.CustomerId = customerId;
+            CustomerId = customerId;
         }
+
         public static int InstanceCount { get; set; }
-        
+
+        public int CustomerId { get; internal set; } 
+
         private string _lastName;
         public string LastName
         {
-            get
-            {
-                // Any code here
-                return _lastName;
-            }
-            set
-            {
-                // Any code here
-                _lastName = value;
-            }
+            get => _lastName;
+            set => _lastName = value;
         }
+
         public string FirstName { get; set; }
         public string EmailAddress { get; set; }
         public Address HomeAddress { get; set; }
         public Address WorkAddress { get; set; }
-        public int CustomerId { get; private set; }
+
         public string FullName
         {
             get
@@ -45,21 +35,18 @@ namespace CMS.BusinessLayer
                 if (!string.IsNullOrWhiteSpace(FirstName))
                 {
                     if (!string.IsNullOrWhiteSpace(fullName))
-                    {
                         fullName += ", ";
-                    }
                     fullName += FirstName;
                 }
                 return fullName;
             }
         }
+
         public bool Validate()
         {
             var isValid = true;
-
             if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
             if (string.IsNullOrWhiteSpace(EmailAddress)) isValid = false;
-
             return isValid;
         }
     }
