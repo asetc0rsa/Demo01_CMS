@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ACM.BL
 {
     public class Order
     {
-        public Order() { }
+        public Order() 
+        {
+            OrderItems = new List<OrderItem>();
+        }
 
-        public Order(int orderId)
+        public Order(int orderId) : this()
         {
             OrderId = orderId;
         }
 
         public int OrderId { get; internal set; }
-        
-        // Связь представлена идентификатором, а не объектом
-        public int CustomerId { get; set; } 
-        
+        public int CustomerId { get; set; }
         public DateTimeOffset? OrderDate { get; set; }
         public Address ShippingAddress { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
 
         public bool Validate()
         {

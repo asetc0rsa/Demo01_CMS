@@ -22,11 +22,4 @@ namespace ACM.BL
         Order GetById(int orderId);
         List<Order> GetAll();
     }
-
-    public interface IOrderItemRepository
-    {
-        int Save(OrderItem orderItem);
-        OrderItem GetById(int orderItemId);
-        List<OrderItem> GetAll();
-    }
 }
